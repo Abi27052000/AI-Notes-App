@@ -50,9 +50,7 @@ class NoteDetailView(APIView):
 class GeneratedNote(BaseModel):
     """Schema for AI-generated note"""
     title: str = Field(description="A concise and descriptive title for the note (max 200 characters)")
-    content: str = Field(description="Detailed, well-structured content expanding on the description. Include relevant information, explanations, and examples.")
-    key_points: list = Field(description="A list of 3-5 key points or takeaways from the content")
-    category: str = Field(description="A suggested category for this note (e.g., Personal, Work, Study, Ideas, etc.)")
+    content: str = Field(description="Brief content expanding on the description, limited to less than 3 sentences.")
 
 
 class GenerateNoteView(APIView):
@@ -90,9 +88,7 @@ Short Description: {description}
 
 Please expand this into detailed notes with the following structure:
 - A clear, concise title
-- Comprehensive content that elaborates on the description
-- Key points or takeaways (as a list)
-- A suggested category
+- Brief content that elaborates on the description, limited to less than 3 sentences
 
 {format_instructions}
 
@@ -121,8 +117,7 @@ Return ONLY the JSON object, nothing else.""",
             # Return the structured response
             return Response({
                 'success': True,
-                'generated_note': parsed_output,
-                'original_description': description
+                'generated_note': parsed_output
             }, status=status.HTTP_200_OK)
             
         except Exception as e:
