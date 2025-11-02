@@ -1,0 +1,8 @@
+Django>=4.0
+djangorestframework
+adrf
+langchain
+langchain-core
+langchain-google-genai
+python-dotenv
+psycopg2-binary
