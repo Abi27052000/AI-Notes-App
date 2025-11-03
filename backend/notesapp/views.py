@@ -10,6 +10,7 @@ from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel, Field
 import os
 
+# need to make CRUD endpoints work without explictly coding get  list put views etc
 
 class NoteListCreateView(APIView):
     async def get(self, request):
